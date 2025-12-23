@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src *">
+    <!--
+        TODO: Marketing team requested a redesign.
+        Current layout is temporary.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="X-Legacy-SDK" content="v1.2.3">  <!-- Simulate a vulnerable library in headers -->
+    <title>DemoShop | Home</title>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Legacy stylesheet (no longer used, kept for rollback just in case) -->
+    <!-- <link rel="stylesheet" href="old-styles.css"> -->
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">DemoShop</div>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="hero">
+            <h1>Welcome to DemoShop</h1>
+            <p>Your one-stop shop for demo products.</p>
+        </section>
+
+        <section class="products">
+            <h2>Featured Products</h2>
+
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <h3>Product One</h3>
+                    <p class="price">$19.99</p>
+                    <p class="description">A simple demo product.</p>
+                    <button 
+                        id="product1-btn"
+                        data-analytics-src="https://unused-demo-domain.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
+                        Add to cart
+                    </button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Product Two</h3>
+                    <p class="price">$29.99</p>
+                    <p class="description">Another demo product.</p>
+                    <button>Add to cart</button>
+                </div>
+
+                <div class="product-card">
+                    <h3>Product Three</h3>
+                    <p class="price">$39.99</p>
+                    <p class="description">Yet another demo product.</p>
+                    <button>Add to cart</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Internal note: This banner is hidden until a promotion is active. -->
+        <section class="promo-banner hidden">
+            <p>🎉 Limited time offer: Free shipping on orders over $50!</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 DemoShop. All rights reserved.</p>
+        <!-- Support contact (not shown publicly yet) support@demoshop.example -->
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.getElementById("product1-btn");
+
+            btn.addEventListener("click", function () {
+                var src = btn.getAttribute("data-analytics-src");
+
+                // Dynamically load the external script
+                var script = document.createElement("script");
+                script.src = src;  // This points to a non-existent URL
+                document.body.appendChild(script);
+
+                console.log("Attempted to load analytics script from: " + src);
+            });
+        });
+
+        // Simulating a library (Lodash) that is discoverable only in the console
+        (function () {
+            var script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"; // Lodash (v4.17.21)
+            script.type = "text/javascript";
+            document.head.appendChild(script);
+        })();
+    </script>
+
+    <!-- jQuery included in HTML content (discoverable via HTML) -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>  <!-- Vulnerable version (CVE-2015-9251) -->
+
+    <!-- Vendor Loader for simulating other libraries -->
+    <script src="/assets/js/vendor-loader.js"></script>
+</body>
+</html>

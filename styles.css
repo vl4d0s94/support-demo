@@ -1,0 +1,111 @@
+/* 
+   Base styles
+   Note: This file is shared across multiple pages
+*/
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f6f6f6;
+    color: #333;
+}
+
+.site-header {
+    background-color: #222;
+    color: #fff;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 16px;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 24px;
+}
+
+.hero {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.products {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 4px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.product-card h3 {
+    margin-top: 0;
+}
+
+.price {
+    font-weight: bold;
+    color: #2a7ae2;
+}
+
+button {
+    background-color: #2a7ae2;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1f5fbf;
+}
+
+/* Promo banner is currently disabled */
+.promo-banner {
+    margin-top: 24px;
+    padding: 16px;
+    background-color: #fffae6;
+    border: 1px solid #f0d000;
+    border-radius: 4px;
+}
+
+/* Hidden elements should not be visible */
+.hidden {
+    display: none;
+}
+
+.site-footer {
+    margin-top: 40px;
+    padding: 16px;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+}
