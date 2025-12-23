@@ -74,23 +74,27 @@
         <!-- Support contact (not shown publicly yet) support@demoshop.example -->
     </footer>
 
-    <!-- Dynamically import the required Lodash functions (toNumber, trim, trimEnd) -->
+    <!-- Dynamically import the required Lodash functions (toNumber, trim, trimEnd, template) -->
     <script type="module">
-        import { toNumber, trim, trimEnd } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.13/lodash.min.js';
+        import { toNumber, trim, trimEnd, template } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.13/lodash.min.js';
 
         document.addEventListener("DOMContentLoaded", function() {
             const inputString = "    12345    ";
             const longString = " ".repeat(50000) + "1";
 
+            // Trim example
             const trimmed = trim(inputString);
             console.log('Trimmed:', trimmed); // Expected: '12345'
 
+            // TrimEnd example
             const trimmedEnd = trimEnd(inputString);
             console.log('Trimmed End:', trimmedEnd); // Expected: '    12345'
 
+            // ToNumber example
             const number = toNumber(inputString);
             console.log('Converted to Number:', number); // Expected: 12345
 
+            // ReDoS simulation with long string
             console.time('Trim Long String');
             trim(longString);
             console.timeEnd('Trim Long String');
@@ -98,9 +102,18 @@
             console.time('ToNumber Long String');
             toNumber(longString);
             console.timeEnd('ToNumber Long String');
+
+            // Template example: Dynamic templating with Lodash
+            const compiled = template('<h2>${name}</h2><p>${description}</p>');
+
+            // Use template with data
+            const result = compiled({ name: 'Product One', description: 'A simple demo product.' });
+            console.log('Compiled Template Output:', result);
+
+            // Dynamically render the template inside the page
+            document.querySelector('.product-grid').innerHTML += result; // Adds the new product card generated from template
         });
     </script>
 
 </body>
 </html>
-
