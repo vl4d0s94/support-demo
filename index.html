@@ -71,12 +71,13 @@
         <!-- Support contact (not shown publicly yet) support@demoshop.example -->
     </footer>
 
-    <!-- Dynamically import Lodash and use _.compact -->
+    <!-- Dynamically import Lodash and use _.chunk -->
     <script type="module">
         import('https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js')
             .then((lodash) => {
-                const result = lodash.compact([0, 1, false, 2, '', 3]);
-                console.log(result); // => [1, 2, 3]
+                // Use _.chunk function to split the array into chunks of size 2
+                const result = lodash.chunk(['a', 'b', 'c', 'd'], 2);
+                console.log(result); // => [['a', 'b'], ['c', 'd']]
             })
             .catch((err) => {
                 console.error("Error loading Lodash:", err);
