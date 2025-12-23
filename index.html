@@ -71,17 +71,15 @@
         <!-- Support contact (not shown publicly yet) support@demoshop.example -->
     </footer>
 
-    <!-- Dynamically import Lodash and use _.chunk -->
+    <!-- Dynamically import only the chunk function from Lodash -->
     <script type="module">
-        import('https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js')
-            .then((lodash) => {
-                // Use _.chunk function to split the array into chunks of size 2
-                const result = lodash.chunk(['a', 'b', 'c', 'd'], 2);
-                console.log(result); // => [['a', 'b'], ['c', 'd']]
-            })
-            .catch((err) => {
-                console.error("Error loading Lodash:", err);
-            });
+        import { chunk } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js';
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            const array = ['a', 'b', 'c', 'd'];
+            const chunkedArray = chunk(array, 2);
+            console.log(chunkedArray); // => [['a', 'b'], ['c', 'd']]
+        });
     </script>
 
 </body>
