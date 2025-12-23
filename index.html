@@ -10,7 +10,7 @@
         Current layout is temporary.
     -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="X-Legacy-SDK" content="v1.2.3">  <!-- Simulate a vulnerable library in headers -->
+    <meta name="X-Legacy-SDK" content="v1.2.3"> 
     <title>DemoShop | Home</title>
 
     <!-- Main stylesheet -->
@@ -48,7 +48,7 @@
                     <p class="description">A simple demo product.</p>
                     <button 
                         id="product1-btn"
-                        data-analytics-src="https://unused-demo-domain.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
+                        data-analytics-src="https://demoshop-subsidiary.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
                         Add to cart
                     </button>
                 </div>
@@ -97,22 +97,14 @@
                 console.log("Attempted to load analytics script from: " + src);
             });
         });
-
-        // Simulating a library (Lodash) that is discoverable only in the console
-        (function () {
-            var script = document.createElement("script");
-            script.src = "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"; // Lodash (v4.17.21)
-            script.type = "text/javascript";
-            document.head.appendChild(script);
-        })();
     </script>
-
-    <!-- jQuery included in HTML content (discoverable via HTML) -->
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>  <!-- Vulnerable version (CVE-2015-9251) -->
-
-    <!-- Vendor Loader for simulating other libraries -->
-    <script src="/assets/js/vendor-loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> 
+    <script type="module">
+  import { someFunction } from 'https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js';
+  someFunction();
+</script>
 </body>
 </html>
+
 
 
