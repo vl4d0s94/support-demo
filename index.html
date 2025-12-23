@@ -76,25 +76,21 @@
 
     <!-- Dynamically import the required Lodash functions (toNumber, trim, trimEnd) -->
     <script type="module">
-        import { toNumber, trim, trimEnd } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js';
+        import { toNumber, trim, trimEnd } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.13/lodash.min.js';
 
         document.addEventListener("DOMContentLoaded", function() {
             const inputString = "    12345    ";
             const longString = " ".repeat(50000) + "1";
 
-            // Test the `trim` function (removes leading and trailing spaces)
             const trimmed = trim(inputString);
             console.log('Trimmed:', trimmed); // Expected: '12345'
 
-            // Test the `trimEnd` function (removes trailing spaces)
             const trimmedEnd = trimEnd(inputString);
             console.log('Trimmed End:', trimmedEnd); // Expected: '    12345'
 
-            // Test the `toNumber` function (converts a string to a number)
             const number = toNumber(inputString);
             console.log('Converted to Number:', number); // Expected: 12345
 
-            // ReDoS simulation with long string (checking the performance of `trim` and `toNumber`)
             console.time('Trim Long String');
             trim(longString);
             console.timeEnd('Trim Long String');
@@ -107,3 +103,4 @@
 
 </body>
 </html>
+
