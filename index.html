@@ -2,22 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" 
-      content="default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net 'unsafe-inline'; img-src *;">
-    
-    <!--
-        TODO: Marketing team requested a redesign.
-        Current layout is temporary.
-    -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net 'unsafe-inline'; img-src *;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="X-Legacy-SDK" content="v1.2.3"> 
+    <meta name="description" content="Simple online store for demo purposes">
     <title>DemoShop | Home</title>
-
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Legacy stylesheet (no longer used, kept for rollback just in case) -->
-    <!-- <link rel="stylesheet" href="old-styles.css"> -->
 </head>
 <body>
 
@@ -41,14 +32,13 @@
             <h2>Featured Products</h2>
 
             <div class="product-grid">
-
                 <div class="product-card">
                     <h3>Product One</h3>
                     <p class="price">$19.99</p>
                     <p class="description">A simple demo product.</p>
                     <button 
                         id="product1-btn"
-                        data-analytics-src="https://demoshop-subsidiary.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
+                        data-analytics-src="https://unused-demo-domain.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
                         Add to cart
                     </button>
                 </div>
@@ -66,7 +56,6 @@
                     <p class="description">Yet another demo product.</p>
                     <button>Add to cart</button>
                 </div>
-
             </div>
         </section>
 
@@ -82,29 +71,17 @@
         <!-- Support contact (not shown publicly yet) support@demoshop.example -->
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var btn = document.getElementById("product1-btn");
-
-            btn.addEventListener("click", function () {
-                var src = btn.getAttribute("data-analytics-src");
-
-                // Dynamically load the external script
-                var script = document.createElement("script");
-                script.src = src;  // This points to a non-existent URL
-                document.body.appendChild(script);
-
-                console.log("Attempted to load analytics script from: " + src);
-            });
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script> 
+    <!-- Dynamically import Lodash and use _.compact -->
     <script type="module">
-  import { someFunction } from 'https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js';
-  someFunction();
-</script>
+        import('https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js')
+            .then((lodash) => {
+                const result = lodash.compact([0, 1, false, 2, '', 3]);
+                console.log(result); // => [1, 2, 3]
+            })
+            .catch((err) => {
+                console.error("Error loading Lodash:", err);
+            });
+    </script>
+
 </body>
 </html>
-
-
-
