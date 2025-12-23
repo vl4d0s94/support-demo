@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" 
-<meta http-equiv="Content-Security-Policy" 
-      content="default-src 'self'; 
-               script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net 'unsafe-inline'; 
-               img-src *; 
-               connect-src 'self' https://cdn.jsdelivr.net;">
+          content="default-src 'self'; 
+                   script-src 'self' https://code.jquery.com https://cdn.jsdelivr.net 'unsafe-inline'; 
+                   img-src *; 
+                   connect-src 'self' https://cdn.jsdelivr.net;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Simple online store for demo purposes">
     <title>DemoShop | Home</title>
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -34,26 +31,19 @@
 
         <section class="products">
             <h2>Featured Products</h2>
-
             <div class="product-grid">
                 <div class="product-card">
                     <h3>Product One</h3>
                     <p class="price">$19.99</p>
                     <p class="description">A simple demo product.</p>
-                    <button 
-                        id="product1-btn"
-                        data-analytics-src="https://unused-demo-domain.example/static/js/vendor/analytics/runtime/loader.bundle.v1.2.9.min.js?account=demo_shop&env=prod">
-                        Add to cart
-                    </button>
+                    <button>Add to cart</button>
                 </div>
-
                 <div class="product-card">
                     <h3>Product Two</h3>
                     <p class="price">$29.99</p>
                     <p class="description">Another demo product.</p>
                     <button>Add to cart</button>
                 </div>
-
                 <div class="product-card">
                     <h3>Product Three</h3>
                     <p class="price">$39.99</p>
@@ -63,7 +53,6 @@
             </div>
         </section>
 
-        <!-- Internal note: This banner is hidden until a promotion is active. -->
         <section class="promo-banner hidden">
             <p>🎉 Limited time offer: Free shipping on orders over $50!</p>
         </section>
@@ -72,20 +61,34 @@
 
     <footer class="site-footer">
         <p>© 2025 DemoShop. All rights reserved.</p>
-        <!-- Support contact (not shown publicly yet) support@demoshop.example -->
     </footer>
 
-    <!-- Dynamically import only the chunk function from Lodash -->
+    <!-- Dynamically import the three specific Lodash functions -->
     <script type="module">
-        import { chunk } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js';
-        
+        import { toNumber, trim, trimEnd } from 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.13/lodash.min.js';
+
         document.addEventListener("DOMContentLoaded", function() {
-            const array = ['a', 'b', 'c', 'd'];
-            const chunkedArray = chunk(array, 2);
-            console.log(chunkedArray); // => [['a', 'b'], ['c', 'd']]
+            const inputString = "    12345    ";
+            const longString = " ".repeat(50000) + "1";
+
+            const trimmed = trim(inputString);
+            console.log('Trimmed:', trimmed); // Expected: '12345'
+
+            const trimmedEnd = trimEnd(inputString);
+            console.log('Trimmed End:', trimmedEnd); // Expected: '    12345'
+
+            const number = toNumber(inputString);
+            console.log('Converted to Number:', number); // Expected: 12345
+
+            console.time('Trim Long String');
+            trim(longString);
+            console.timeEnd('Trim Long String');
+
+            console.time('ToNumber Long String');
+            toNumber(longString);
+            console.timeEnd('ToNumber Long String');
         });
     </script>
 
 </body>
 </html>
-
